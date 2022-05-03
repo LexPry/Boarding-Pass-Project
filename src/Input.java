@@ -37,7 +37,6 @@ public class Input {
 
         // creating a new Date object that takes the String in the
         // format Month/Day/Year and then splits it and creates the date object
-
         System.out.println("Enter your Departure time: ");
         System.out.println("Expected Format: Mon/Day/Year");
 //        String line = in.nextLine();
