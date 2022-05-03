@@ -11,7 +11,7 @@ public class WriteToFile {
         BufferedWriter bw = new BufferedWriter(fw);
         PrintWriter pw = new PrintWriter(bw);
 
-        pw.println(boardingPass.getBoardingPassNumber()+","+ user.getName()+","+user.getEmail()+","+
+        pw.println(boardingPass.getBoardingNumber()+","+ user.getName()+","+user.getEmail()+","+
                 user.getPhoneNumber()+","+user.getGender()+","+user.getAge()+","+user.getDate()+","+
                 user.getOrigin()+","+user.getDestination()+","+user.getDepartureTime()+","+boardingPass.getETA());
         pw.flush();
