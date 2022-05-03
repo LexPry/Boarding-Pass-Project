@@ -1,6 +1,5 @@
 import java.math.BigInteger;
 import java.security.MessageDigest;
-import java.time.Instant;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Objects;
@@ -39,6 +38,19 @@ public class BoardingPass {
         return ETA;
     }
 
+    public static double getFemaleDiscountPercent() {
+        return femaleDiscountPercent;
+    }
+    public static double getSeniorDiscountPercent() {
+        return seniorDiscountPercent;
+    }
+    public static double getKidDiscountPercent() {
+        return kidDiscountPercent;
+    }
+
+    protected static final double femaleDiscountPercent = .75;
+    protected static final double seniorDiscountPercent = .4;
+    protected static final double kidDiscountPercent = .5;
 
 
     private static final HashMap<String,Airport> airports = new HashMap<>();
@@ -61,12 +73,10 @@ public class BoardingPass {
         return airports;
     }
     private void generatePrice(User user) {
-        double result = 0;
-        double basePrice = getBasePrice(user.getOrigin(), user.getDestination());
-        baseTicketPrice = (int) (basePrice * 100);
+        double result = getBasePrice(user.getOrigin(), user.getDestination());
 
         if (Objects.equals(user.getGender(), "f")) {
-            result -= basePrice / 4.;
+            result *= femaleDiscountPercent;
             femaleDiscount = true;
         } else {
             femaleDiscount = false;
@@ -74,15 +84,15 @@ public class BoardingPass {
 
 
         if (user.getAge() <= 16) {
-            result -= result / 2;
+            result *= kidDiscountPercent;
             kidDiscount = true;
             seniorDiscount = false;
         } else if (user.getAge() >= 60) {
-            result -= result * (3. / 5.);
+            result *= seniorDiscountPercent;
             seniorDiscount = true;
             kidDiscount = false;
         }
-        finalTicketPrice = (int) (result * 100.);
+        finalTicketPrice = (int) (result);
     }
 
     private double getBasePrice(String origin, String dest) {
@@ -103,10 +113,9 @@ public class BoardingPass {
 
     private final String boardingNumber;
 
-    protected String getBoardingPassNumber() {
-        Date now = Date.from(Instant.EPOCH);
+    private String getBoardingPassNumber() {
+       //combine all information into a single String, then hash, then take use 20 digits of hash
         StringBuilder sb = new StringBuilder();
-        sb.append(Long.toString(now.getTime()));
 
         sb.append(user.getName());
 
