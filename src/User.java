@@ -2,9 +2,10 @@ import java.io.IOException;
 import java.util.Date;
 
 public class User {
+    public enum Gender{ M,F}
     private String name;
     private String email;
-    private String Gender;
+    private Gender gender;
     private String phoneNumber;
     private Date date;
     private String destination;
@@ -13,11 +14,11 @@ public class User {
     private int age;
     private BoardingPass boardingPass;
 
-    public User( String name, String email, String gender, String phoneNumber, Date date, String destination, Date departureTime, String origin, int age){
+    public User( String name, String email, Gender gender, String phoneNumber, Date date, String destination, Date departureTime, String origin, int age){
 
         this.name = name;
         this.email = email;
-        Gender = gender;
+        this.gender = gender;
         this.phoneNumber = phoneNumber;
         this.date = date;
         this.destination = destination;
@@ -29,7 +30,7 @@ public class User {
     }
 
     public void writeToFile() throws IOException{
-        WriteToFile.saveRecord(this.boardingPass.getUser().getBoardingPassNumber(), name,email,Gender,phoneNumber,date,destination,departureTime,origin,age);
+        WriteToFile.saveRecord(this.boardingPass.getUser().getBoardingPassNumber(), name,email,gender,phoneNumber,date,destination,departureTime,origin,age);
     }
 
     public BoardingPass getNewBoardingPass() {
@@ -52,12 +53,13 @@ public class User {
         this.email = email;
     }
 
-    public String getGender() {
-        return Gender;
+    public Gender getGender() {
+        return gender;
     }
 
-    public void setGender(String gender) {
-        Gender = gender;
+    public void setGender(Gender gender) {
+
+        this.gender = gender;
     }
 
     public String getPhoneNumber() {
@@ -113,7 +115,7 @@ public class User {
         return "User{" +
                 "name='" + name + '\'' +
                 ", email='" + email + '\'' +
-                ", Gender='" + Gender + '\'' +
+                ", Gender='" + Gender.values() + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 "\n, date=" + date +
                 ", destination='" + destination + '\'' +
