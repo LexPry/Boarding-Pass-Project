@@ -28,9 +28,6 @@ public class User {
 
     }
 
-    public void writeToFile() throws IOException{
-        WriteToFile.saveRecord(this.boardingPass.getUser().getBoardingPassNumber(), name,email,Gender,phoneNumber,date,destination,departureTime,origin,age);
-    }
 
     public BoardingPass getNewBoardingPass() {
         return new BoardingPass(this);
