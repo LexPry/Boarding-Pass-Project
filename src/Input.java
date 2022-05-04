@@ -1,4 +1,3 @@
-import java.time.Instant;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -34,7 +33,12 @@ public class Input {
         String email = in.next();
 
         System.out.println("Please Enter your phone number: ");
-        String phoneNumber = in.next();
+        String phoneNumber = in.nextLine();
+
+        while (!checkNumber(phoneNumber)) {
+            System.out.println("Please enter a valid phone number: ");
+            phoneNumber = in.next();
+        }
 
         // creating a Date object that stores the current time of creation
         Date date = new Date();
@@ -56,6 +60,35 @@ public class Input {
         String origin = "LAX";
 
         return new User(name, email, gender, phoneNumber, date, destination, departureTime, origin, age);
+    }
+
+    public static boolean checkNumber(String phoneNumber) {
+        if (phoneNumber.length() >= 9) {
+            // validate phone numbers of format "1234567890"
+            if (phoneNumber.matches("\\d{10}"))
+                return true;
+                // validating phone number with -, . or spaces
+            else if (phoneNumber.matches("\\d{3}[-.\\s]\\d{3}[-.\\s]\\d{4}"))
+                return true;
+                // validating phone number with extension length from 3 to 5
+            else if (phoneNumber.matches("\\d{3}-\\d{3}-\\d{4}\\s(x|(ext))\\d{3,5}"))
+                return true;
+                // validating phone number where area code is in braces ()
+            else if (phoneNumber.matches("\\(\\d{3}\\)-\\d{3}-\\d{4}"))
+                return true;
+                // Validation for India numbers
+            else if (phoneNumber.matches("\\d{4}[-.\\s]\\d{3}[-.\\s]\\d{3}"))
+                return true;
+            else if (phoneNumber.matches("\\(\\d{5}\\)-\\d{3}-\\d{3}"))
+                return true;
+
+            else if (phoneNumber.matches("\\(\\d{4}\\)-\\d{3}-\\d{3}"))
+                return true;
+                // return false if nothing matches the input
+            else
+                return false;
+        }
+        return false;
     }
 
 }
