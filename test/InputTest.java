@@ -1,13 +1,12 @@
-import junit.framework.TestCase;
-import org.junit.Test;
 
-import java.time.Instant;
+import static org.junit.jupiter.api.Assertions.*;
+
 import java.util.Date;
 
-public class InputTest extends TestCase
+public class InputTest
     {
 
-        @Test
+        @org.junit.jupiter.api.Test
         public void testGenerateUser() {
             User test = new User("Lex","jjj@null.com","M","555-555-5555",
                     new Date(),"Atlanta",new Date(12/20/1020),"MI",23);
