@@ -22,16 +22,4 @@ public class InputTest {
         assertEquals("LAX", test.getOrigin());
         assertEquals(23, test.getAge());
     }
-
-
-    @Test
-    void testCheckNumber() {
-        Assertions.assertTrue(Input.checkNumber("555-555-5555"));
-        Assertions.assertTrue(Input.checkNumber("4444444444"));
-        Assertions.assertTrue(Input.checkNumber("404 320 1234"));
-        Assertions.assertFalse(Input.checkNumber("222"));
-        Assertions.assertFalse(Input.checkNumber("(4043)2071234"));
-        Assertions.assertFalse(Input.checkNumber("(443)201-9234"));
-        Assertions.assertTrue(Input.checkNumber("(777)-231-8821"));
-    }
 }
