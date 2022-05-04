@@ -13,7 +13,7 @@ public class WriteToFile {
 
         pw.println(boardingPass.getBoardingNumber()+","+ user.getName()+","+user.getEmail()+","+
                 user.getPhoneNumber()+","+user.getGender()+","+user.getAge()+","+user.getDate()+","+
-                user.getOrigin()+","+user.getDestination()+","+user.getDepartureTime()+","+boardingPass.getETA());
+                user.getOrigin()+","+user.getDestination()+","+user.getDepartureTime()+","+boardingPass.getETA()+","+boardingPass.getFinalTicketPrice());
         pw.flush();
         pw.close();
     }
