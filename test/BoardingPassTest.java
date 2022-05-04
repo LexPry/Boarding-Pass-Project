@@ -17,11 +17,11 @@ class BoardingPassTest {
         SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy hh:mm aa");
 
         Date date = assertDoesNotThrow(()-> format.parse("05/03/2022 11:01 am"));
-        User testUserMale = new User("Crash Test Dummy", "crashtest@airplanesRsafe.com", "male", "555-555-5555",
+        User testUserMale = new User("Crash Test Dummy", "crashtest@airplanesRsafe.com", User.Gender.M, "555-555-5555",
                 date, "LAX", date, "JFK", 50);
-        User testUserSeniorFemale = new User("Crash Test Dummette", "areufosreal@airplanesRsafe.com", "f", "555-555-5556",
+        User testUserSeniorFemale = new User("Crash Test Dummette", "areufosreal@airplanesRsafe.com", User.Gender.F, "555-555-5556",
                 date, "ORD", date, "JFK", 70);
-        User testUserKidMale = new User("Crash Test Timmy", "iamtooyoungtohaveanemail@airplanesRsafe.com", "male", "555-555-5556",
+        User testUserKidMale = new User("Crash Test Timmy", "iamtooyoungtohaveanemail@airplanesRsafe.com", User.Gender.M, "555-555-5556",
                 date, "ORD", date, "JFK", 3);
 
         BoardingPass male = assertDoesNotThrow(()->  new BoardingPass(testUserMale));
