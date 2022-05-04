@@ -2,7 +2,8 @@ import java.io.IOException;
 import java.util.Date;
 
 public class User {
-    public enum Gender{ M,F}
+    public enum Gender {M, F}
+
     private String name;
     private String email;
     private Gender gender;
@@ -14,7 +15,7 @@ public class User {
     private int age;
     private BoardingPass boardingPass;
 
-    public User( String name, String email, Gender gender, String phoneNumber, Date date, String destination, Date departureTime, String origin, int age){
+    public User(String name, String email, Gender gender, String phoneNumber, Date date, String destination, Date departureTime, String origin, int age) {
 
         this.name = name;
         this.email = email;
@@ -27,10 +28,6 @@ public class User {
         this.age = age;
         this.boardingPass = getNewBoardingPass();
 
-    }
-
-    public void writeToFile() throws IOException{
-        WriteToFile.saveRecord(this.boardingPass.getUser().getBoardingPassNumber(), name,email,gender,phoneNumber,date,destination,departureTime,origin,age);
     }
 
     public BoardingPass getNewBoardingPass() {
@@ -59,9 +56,9 @@ public class User {
 
     public void setGender(String gender) {
 
-        if (gender.equalsIgnoreCase("m")){
+        if (gender.equalsIgnoreCase("m")) {
             this.gender = Gender.M;
-        }else if (gender.equalsIgnoreCase("f")){
+        } else if (gender.equalsIgnoreCase("f")) {
             this.gender = Gender.F;
         }
 
@@ -120,7 +117,7 @@ public class User {
         return "User{" +
                 "name='" + name + '\'' +
                 ", email='" + email + '\'' +
-                ", Gender='" + Gender.values() + '\'' +
+                ", Gender='" + this.getGender().toString() + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 "\n, date=" + date +
                 ", destination='" + destination + '\'' +
