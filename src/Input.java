@@ -30,7 +30,6 @@ public class Input {
             gender = User.Gender.F;
         }
 
-
         System.out.println("Please enter your email: ");
         String email = in.next();
 
@@ -41,7 +40,7 @@ public class Input {
         Date date = new Date();
 
         System.out.println("Enter choose your destination: ");
-        String destination = "LAX";
+        String destination = in.next();
 
         // creating a new Date object that takes the String in the
         // format Month/Day/Year and then splits it and creates the date object
