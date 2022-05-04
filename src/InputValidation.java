@@ -35,7 +35,7 @@ public class InputValidation {
         String temp = in.next();
         User.Gender gender;
         // only take in one number, no whitespace, no chars
-        while (!temp.matches("(?<!\\S)\\d(?!\\S)")) {
+        while (!temp.matches("(?<!\\S)[123](?!\\S)")) {
             temp = in.next();
         }
 
