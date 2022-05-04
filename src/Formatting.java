@@ -1,43 +1,49 @@
+//Reads from a user data file, formats the data into a more user-friendly, then writes to another file.
+import java.io.File;
 import java.io.FileWriter;
-import java.util.Date;
 import java.util.Scanner;
 
 public class Formatting {
 
-    public static void format(User user) {
-        String path = "/home/pryme/IdeaProjects/Boarding-Pass-Project/resource/user_data.csv";
-        String formated = "/home/pryme/IdeaProjects/Boarding-Pass-Project/resource/FormattedTicket.txt";
-        try{
-            Scanner sc = new Scanner(path);
-            while(sc.hasNext()){
-                //user data file layout??
-            }
-            String name = user.getName();
-            String gender = user.getGender();
-            int age = user.getAge();
-            String phoneNumber = user.getPhoneNumber();
-            String email = user.getEmail();
-            Date date = user.getDate();
-            String destination = user.getDestination();
-            Date departureTime = user.getDepartureTime();
-            String origin = user.getOrigin();
-            String eta = String.valueOf(user.getBoardingPassNumber().getETA());
-            String basePrice = String.valueOf(user.getBoardingPassNumber().getBaseTicketPrice());
-            String discount = String.valueOf(user.getBoardingPassNumber().getBaseTicketPrice()/user.getBoardingPassNumber().getFinalTicketPrice());
-            String discountPrice = String.valueOf(user.getBoardingPassNumber().getFinalTicketPrice());
+    public static void format() {
+        //relative path
+        String path = "resource\\user_data.csv";
+        String formated = "resource\\FormattedTicket.txt";
+        File file = new File(path);
 
+        try {
+            Scanner sc = new Scanner(file);
             FileWriter formattedWrite = new FileWriter(formated);
+            while (sc.hasNext()) {
+                //split userdata into 11 elements
+                String topSpace = String.format("%83s","").replace(' ','=');
+                String[] userData = sc.nextLine().split(",");
+                String passNumber = userData[0];
+                String name = userData[1];
+                String email = userData[2];
+                String phoneNumber = userData[3];
+                String gender = userData[4];
+                int age = Integer.parseInt(userData[5]);
+                String date = userData[6].substring(0,10);
+                String origin = userData[7];
+                String destination = userData[8];
+                String departureTime = userData[9].substring(10,18);
+                String eta = userData[10];
+                String totalPrice = userData[11];
+                String bottomSpace = String.format("%83s","").replace(' ','=');
 
-            formattedWrite.write(String.format("Name:  %-20s Age: %-29s Gender: %-10s %n" +
-                            "Email: %-20s Phone Number: %-20s%n" +
-                            "From:  %-20s To:  %-29s Date: %-5s%n" +
-                            "Time: %-21s ETA: %-10s%n" +
-                            "Base Price: %-15s Discount:  %-23s Discounted Price: %-5s",
-                    name,age,gender,
-                    email,phoneNumber,
-                    origin,destination,date,
-                    departureTime,eta,
-                    basePrice,discount,discountPrice));
+                //formatted to look like a ticket,every 6 lines is a new ticket
+                formattedWrite.write(String.format("%s%n" +
+                                "|Name:  %-20s Age: %-29s Gender: %-10s|%n" +
+                                "|Email: %-20s Phone Number: %-20s Time: %-12s|%n" +
+                                "|From:  %-20s To:  %-29s Date: %-12s|%n" +
+                                "|Bording Pass #: %-11s ETA: %-29s Price: %-11s|%n" +
+                                "%s",
+                        topSpace,name, age, gender,
+                        email, phoneNumber,departureTime,
+                        origin, destination, date,
+                        passNumber, eta,totalPrice,bottomSpace));
+            }
             formattedWrite.close();
         }catch (Exception e){
             e.printStackTrace();

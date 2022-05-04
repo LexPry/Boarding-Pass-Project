@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Boarding-Pass-Project.iml" filepath="$PROJECT_DIR$/.idea/Boarding-Pass-Project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Boarding-Pass-Project.iml" filepath="$PROJECT_DIR$/Boarding-Pass-Project.iml" />
     </modules>
   </component>
 </project>
