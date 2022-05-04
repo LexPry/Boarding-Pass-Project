@@ -16,7 +16,7 @@ public class Formatting {
             FileWriter formattedWrite = new FileWriter(formated);
             while (sc.hasNext()) {
                 //split userdata into 11 elements
-                String topSpace = String.format("%83s","").replace(' ','=');
+                String topSpace = String.format("%96s","").replace(' ','=');
                 String[] userData = sc.nextLine().split(",");
                 String passNumber = userData[0];
                 String name = userData[1];
@@ -30,19 +30,19 @@ public class Formatting {
                 String departureTime = userData[9].substring(10,18);
                 String eta = userData[10];
                 String totalPrice = userData[11];
-                String bottomSpace = String.format("%83s","").replace(' ','=');
+                String bottomSpace = String.format("%96s","").replace(' ','=');
 
                 //formatted to look like a ticket,every 6 lines is a new ticket
                 formattedWrite.write(String.format("%s%n" +
-                                "|Name:  %-20s Age: %-29s Gender: %-10s|%n" +
-                                "|Email: %-20s Phone Number: %-20s Time: %-12s|%n" +
-                                "|From:  %-20s To:  %-29s Date: %-12s|%n" +
-                                "|Bording Pass #: %-11s ETA: %-29s Price: %-11s|%n" +
-                                "%s",
+                                "|Name:  %-29s Age: %-33s Gender: %-10s|%n" +
+                                "|Email: %-29s Phone Number: %-24s Time: %-12s|%n" +
+                                "|From:  %-29s To:  %-33s Date: %-12s|%n" +
+                                "|Bording Pass #: %-11s ETA: %-33s Price: %-11s|%n" +
+                                "%s%n",
                         topSpace,name, age, gender,
                         email, phoneNumber,departureTime,
                         origin, destination, date,
-                        passNumber, eta,totalPrice,bottomSpace));
+                        passNumber,eta,totalPrice,bottomSpace));
             }
             formattedWrite.close();
         }catch (Exception e){
