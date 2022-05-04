@@ -2,9 +2,11 @@ import java.io.IOException;
 import java.util.Date;
 
 public class User {
+    public enum Gender {M, F}
+
     private String name;
     private String email;
-    private String Gender;
+    private Gender gender;
     private String phoneNumber;
     private Date date;
     private String destination;
@@ -13,11 +15,11 @@ public class User {
     private int age;
     private BoardingPass boardingPass;
 
-    public User( String name, String email, String gender, String phoneNumber, Date date, String destination, Date departureTime, String origin, int age){
+    public User(String name, String email, Gender gender, String phoneNumber, Date date, String destination, Date departureTime, String origin, int age) {
 
         this.name = name;
         this.email = email;
-        Gender = gender;
+        this.gender = gender;
         this.phoneNumber = phoneNumber;
         this.date = date;
         this.destination = destination;
@@ -27,7 +29,6 @@ public class User {
         this.boardingPass = getNewBoardingPass();
 
     }
-
 
     public BoardingPass getNewBoardingPass() {
         return new BoardingPass(this);
@@ -49,12 +50,18 @@ public class User {
         this.email = email;
     }
 
-    public String getGender() {
-        return Gender;
+    public Gender getGender() {
+        return gender;
     }
 
     public void setGender(String gender) {
-        Gender = gender;
+
+        if (gender.equalsIgnoreCase("m")) {
+            this.gender = Gender.M;
+        } else if (gender.equalsIgnoreCase("f")) {
+            this.gender = Gender.F;
+        }
+
     }
 
     public String getPhoneNumber() {
@@ -110,7 +117,7 @@ public class User {
         return "User{" +
                 "name='" + name + '\'' +
                 ", email='" + email + '\'' +
-                ", Gender='" + Gender + '\'' +
+                ", Gender='" + this.getGender().toString() + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 "\n, date=" + date +
                 ", destination='" + destination + '\'' +
