@@ -1,4 +1,6 @@
+import java.util.Arrays;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 public class InputValidation {
     public static boolean checkNumber(String phoneNumber) {
@@ -50,5 +52,95 @@ public class InputValidation {
                 gender = User.Gender.X;
         }
         return gender;
+    }
+
+    public static String checkEmail(Scanner in) {
+        String temp = in.next();
+        while (temp.matches("(@)(.+)$")) {
+            System.out.println("Please enter a valid email: ");
+            System.out.println("Format expected: gernericemail@xxxx.com");
+            temp = in.next();
+        }
+        return temp;
+    }
+
+    public static String checkName(Scanner in) {
+        String tempName = in.next();
+        while (!tempName.matches("[a-zA-Z]+")) {
+            System.out.println("Please enter a valid name: ");
+            tempName = in.next();
+        }
+        return tempName;
+    }
+
+    public static String checkDestination(Scanner in) {
+        System.out.println("Please choose an option: ");
+        Arrays.asList("1. ATL", "2. JFK", "3. LAX", "4. ORD").forEach(System.out::println);
+        String destination = "";
+
+        String assignDestination = in.next();
+
+        while (!assignDestination.matches("[1234]")) {
+            System.out.println("Please choose a valid option: ");
+            Arrays.asList("1. ATL", "2. JFK", "3. LAX", "4. ORD").forEach(System.out::println);
+            assignDestination = in.next();
+        }
+
+        switch (Integer.parseInt(assignDestination)) {
+            case 1:
+                destination = "ATL";
+                break;
+            case 2:
+                destination = "JFK";
+                break;
+            case 3:
+                destination = "LAX";
+                break;
+            case 4:
+                destination = "ORD";
+                break;
+        }
+        return destination;
+    }
+
+    public static String checkDestination(String originDestination, Scanner in) {
+        System.out.println("Please choose an option: ");
+        Stream.of("1. ATL", "2. JFK", "3. LAX", "4. ORD").filter(a -> !a.contains(originDestination)).forEach(System.out::println);
+        String destination = "";
+
+        String assignDestination = in.next();
+
+        while (!assignDestination.matches("[1234]")) {
+            System.out.println("Please choose a valid option: ");
+            Arrays.asList("1. ATL", "2. JFK", "3. LAX", "4. ORD").forEach(System.out::println);
+            assignDestination = in.next();
+        }
+
+        switch (Integer.parseInt(assignDestination)) {
+            case 1:
+                destination = "ATL";
+                break;
+            case 2:
+                destination = "JFK";
+                break;
+            case 3:
+                destination = "LAX";
+                break;
+            case 4:
+                destination = "ORD";
+                break;
+        }
+        return destination;
+    }
+
+    public static String dateValidation(Scanner in) {
+        String tempDate = in.next();
+        while (!tempDate.matches("^(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](20)\\d\\d$"))
+        {
+            System.out.println("Please enter a valid date with the expected format: ");
+            System.out.println("Example: Mon/day/year(xxx) -> 12/24/2019");
+            tempDate = in.next();
+        }
+        return tempDate;
     }
 }
