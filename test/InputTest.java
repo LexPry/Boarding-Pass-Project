@@ -17,6 +17,7 @@ public class InputTest {
         assertEquals("jjj@null.com", test.getEmail());
         assertEquals("M", String.valueOf(test.getGender()));
         assertEquals("555-555-5555", test.getPhoneNumber());
+        assertEquals(String.valueOf(new Date(12 / 20 / 1020)), String.valueOf(test.getDepartureTime()));
         assertEquals("JFK", test.getDestination());
         assertEquals("LAX", test.getOrigin());
         assertEquals(23, test.getAge());
@@ -25,7 +26,6 @@ public class InputTest {
 
     @Test
     void testCheckNumber() {
-        Input input = new Input();
         Assertions.assertTrue(Input.checkNumber("555-555-5555"));
         Assertions.assertTrue(Input.checkNumber("4444444444"));
         Assertions.assertTrue(Input.checkNumber("404 320 1234"));
