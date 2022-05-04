@@ -113,7 +113,7 @@ public class BoardingPass {
 
     private final String boardingNumber;
 
-    public String getBoardingPassNumber() {
+    private String getBoardingPassNumber() {
        //combine all information into a single String, then hash, then take use 20 digits of hash
         StringBuilder sb = new StringBuilder();
 
