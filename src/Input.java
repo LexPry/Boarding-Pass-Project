@@ -5,6 +5,8 @@ import java.util.Scanner;
 public class Input {
 
 
+
+
     /*
     My thought process was get the user input and use that to create the user object
     Need to figure out a method to select the available flights
@@ -13,21 +15,29 @@ public class Input {
         Scanner in = new Scanner(System.in);
 
         System.out.println("Please enter your name: ");
-        String name = "Al";
-//        String name = in.nextLine();
+      //  String name = "Al";
+       String name = in.nextLine();
 
         System.out.println("Please enter your age: ");
-//        int age = in.nextInt();
-        int age = 20;
+        int age = in.nextInt();
+     //   int age = 20;
 
-        System.out.println("Please enter your Gender: ");
-        String gender = "M";
+
+        // user input for gender
+        String ingender = in.nextLine();
+        if(ingender == "M" || ingender == "m"){
+            User.Gender gender = User.Gender.M;
+        }else if(ingender == "F" || ingender == "f"){
+            User.Gender gender = User.Gender.F;
+        }
+
+
 
         System.out.println("Please enter your email: ");
-        String email = "lll@gmail";
+        String email = in.nextLine();
 
         System.out.println("Please Enter your phone number: ");
-        String phoneNumber = "333-333-333";
+        String phoneNumber = in.nextLine();
 
         // creating a Date object that stores the current time of creation
         Date date = Date.from(Instant.EPOCH);

@@ -57,9 +57,14 @@ public class User {
         return gender;
     }
 
-    public void setGender(Gender gender) {
+    public void setGender(String gender) {
 
-        this.gender = gender;
+        if (gender.equalsIgnoreCase("m")){
+            this.gender = Gender.M;
+        }else if (gender.equalsIgnoreCase("f")){
+            this.gender = Gender.F;
+        }
+
     }
 
     public String getPhoneNumber() {
