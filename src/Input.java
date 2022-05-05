@@ -1,7 +1,4 @@
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.Scanner;
+import java.util.*;
 
 public class Input {
 
@@ -16,8 +13,7 @@ public class Input {
         System.out.println("Please enter your name: ");
         String name = InputValidation.checkName(in);
 
-        System.out.println("Please enter your age: ");
-        int age = in.nextInt();
+        int age = getUserAge(in);
 
         System.out.println("Please enter your gender: ");
         // user input for gender
@@ -58,6 +54,18 @@ public class Input {
 
 
         return new User(name, email, gender, phoneNumber, date, destination, departureTime, origin, age);
+    }
+
+    private static int getUserAge(Scanner in) {
+        int age = -1;
+        do {
+            System.out.println("Please enter your age: ");
+            try {
+                age = in.nextInt();
+            } catch (InputMismatchException ime){/*empty*/}
+
+        } while (age < 0);
+        return age;
     }
 
 }
