@@ -6,22 +6,31 @@ import java.util.stream.Collectors;
 public class InputValidation {
     public static boolean checkNumber(String phoneNumber) {
         if (phoneNumber.length() >= 9) {
+            //(\+?(1[\s+-]?))? means   '1' (preceded optionally by a '+') followed by either a space, no space, '+', '-' ; OR no '1' with any of that.
+            //for country code '1'
+
+
             // validate phone numbers of format "1234567890"
-            if (phoneNumber.matches("\\d{10}")) {
+            if (phoneNumber.matches("(\\+?(1[\\s+-]?))?\\d{10}")) {
                 return true;
             }
             // validating phone number with -, . or spaces
-            else if (phoneNumber.matches("\\d{3}[-.\\s]\\d{3}[-.\\s]\\d{4}")) {
+            //[-\s]? separate by space '-' or no space
+        /*    else if (phoneNumber.matches("(\\+?(1[\\s+-]?))?\\d{3}[-.\\s]?\\d{3}[-.\\s]?\\d{4}")) {
                 return true;
-            }
+            }*/
             // validating phone number with extension length from 3 to 5
-            else if (phoneNumber.matches("\\d{3}-\\d{3}-\\d{4}\\s(x|(ext))\\d{3,5}")) {
+            //(\s(x|(ext))\d{3,5})? checks for extension
+            else if (phoneNumber.matches("(\\+?(1[\\s+-]?))?\\d{3}[-\\s]?\\d{3}[-\\s]?\\d{4}(\\s(x|(ext))[-+\\s]?\\d{3,5})?")) {
                 return true;
             }
             // validating phone number where area code is in braces ()
-            else if (phoneNumber.matches("\\(\\d{3}\\)-\\d{3}-\\d{4}")) {
+            else if (phoneNumber.matches("(\\+?(1[\\s+-]?))?\\(\\d{3}\\)[\\s-]?\\d{3}[-\\s]?\\d{4}(\\s(x|(ext))[-+\\s]?\\d{3,5})?")) {
                 return true;
             }
+     /*       else if (phoneNumber.matches("(\\+?(1[\\s+-]?))?\\(\\d{3}\\) \\d{3}-\\d{4}")) {
+                return true;
+            }*/
             // Validation for India numbers
             else if (phoneNumber.matches("\\d{4}[-.\\s]\\d{3}[-.\\s]\\d{3}")) {
                 return true;
