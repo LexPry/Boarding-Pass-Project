@@ -68,7 +68,9 @@ public class Input {
             System.out.println("Please enter your age: ");
             try {
                 age = in.nextInt();
-            } catch (InputMismatchException ime){/*empty*/}
+            } catch (InputMismatchException ime){
+                String flush = in.next();
+            }
         } while (age < 0);
         return age;
     }
