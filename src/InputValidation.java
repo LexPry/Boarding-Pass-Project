@@ -102,6 +102,10 @@ public class InputValidation {
 
     public static String dateValidation(Scanner in) {
         String tempDate = in.next();
+        // makes sure date follows format (xx/xx/xxxx)
+        // and ensures months will never be out of range 1-12
+        // and dates will never be higher than 31
+        // also only takes years 20xx
         while (!tempDate.matches("^(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](20)\\d\\d$"))
         {
             System.out.println("Please enter a valid date with the expected format: ");
