@@ -108,4 +108,21 @@ public class InputValidation {
         }
         return tempDate;
     }
+
+    public static String timeValidate(Scanner in) {
+        String tempTime;
+
+        do {
+            System.out.println("Please enter a time with the expected format: ");
+            System.out.println("Example: HH:MM AM/PM ->  12:34 PM");
+            tempTime = in.next();
+        }
+        while (!tempTime.matches("^(11|12|0[1-9]):([0-5][/d]) ([aApP])(mM)$"));
+        var temp = tempTime.split("(: )");
+        int hour = Integer.parseInt(temp[0]);
+        if (Character.toUpperCase(temp[2].charAt(0)) == 'P'){
+             hour += hour;
+        }
+        return hour + ":" + temp[1];
+    }
 }

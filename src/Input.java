@@ -41,21 +41,25 @@ public class Input {
 
         // creating a new Date object that takes the String in the
         // format Month/Day/Year and then splits it and creates the date object
-        System.out.println("Enter your Departure time: ");
+        Date departureTime = getDepartureTime(in);
+
+        return new User(name, email, gender, phoneNumber, date, destination, departureTime, origin, age);
+    }
+
+    private static Date getDepartureTime(Scanner in) {
+        System.out.println("Enter your Departure Date: ");
         System.out.println("Expected Format: Mon/Date/Year(xxxx)");
         String line = InputValidation.dateValidation(in);
-
         String[] dateFormatter = line.split("/");
+
+        System.out.println("Enter your Departure Time: ");
+        System.out.println("HH:mm AM/PM");
+        String[] timeLine = InputValidation.timeValidate(in).split(":");
 
         Calendar calendar = new Calendar.Builder().setCalendarType("gregorian")
                 .setDate(Integer.parseInt(dateFormatter[2]), Integer.parseInt(dateFormatter[1]),
-                        Integer.parseInt(dateFormatter[0])).build();
-
-        Date departureTime = calendar.getTime();
-
-
-
-        return new User(name, email, gender, phoneNumber, date, destination, departureTime, origin, age);
+                        Integer.parseInt(dateFormatter[0])).setTimeOfDay(Integer.parseInt(timeLine[0]), Integer.parseInt(timeLine[1]), 0).build();
+        return calendar.getTime();
     }
 
     private static int getUserAge(Scanner in) {
@@ -65,7 +69,6 @@ public class Input {
             try {
                 age = in.nextInt();
             } catch (InputMismatchException ime){/*empty*/}
-
         } while (age < 0);
         return age;
     }
