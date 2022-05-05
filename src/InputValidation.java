@@ -1,5 +1,7 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class InputValidation {
@@ -73,65 +75,28 @@ public class InputValidation {
         return tempName;
     }
 
-    public static String checkDestination(Scanner in) {
-        System.out.println("Please choose an option: ");
-        Arrays.asList("1. ATL", "2. JFK", "3. LAX", "4. ORD").forEach(System.out::println);
-        String destination = "";
+    public static String checkDestination(Scanner in, String originDestination) {
 
-        String assignDestination = in.next();
+        var airports = Airport.getAirports().keySet().stream().filter(a -> !a.equals(originDestination)).collect(Collectors.toCollection(ArrayList::new));
 
-        while (!assignDestination.matches("[1234]")) {
-            System.out.println("Please choose a valid option: ");
-            Arrays.asList("1. ATL", "2. JFK", "3. LAX", "4. ORD").forEach(System.out::println);
+        String assignDestination;
+        boolean firstTry = true;
+        var end = String.valueOf(airports.size());
+        do {
+            System.out.println("Please choose a" + (firstTry ? "n" : " valid") + " option: ");
+            firstTry = false;
+            int count = 0;
+            for (var a : airports) {
+                System.out.println(++count + ". " + a);
+            }
             assignDestination = in.next();
-        }
 
-        switch (Integer.parseInt(assignDestination)) {
-            case 1:
-                destination = "ATL";
-                break;
-            case 2:
-                destination = "JFK";
-                break;
-            case 3:
-                destination = "LAX";
-                break;
-            case 4:
-                destination = "ORD";
-                break;
-        }
-        return destination;
+        }while (!assignDestination.matches("[1-" + end + "]"));
+
+        var index = Integer.parseInt(assignDestination)-1;
+        return airports.get(index);
     }
 
-    public static String checkDestination(String originDestination, Scanner in) {
-        System.out.println("Please choose an option: ");
-        Stream.of("1. ATL", "2. JFK", "3. LAX", "4. ORD").filter(a -> !a.contains(originDestination)).forEach(System.out::println);
-        String destination = "";
-
-        String assignDestination = in.next();
-
-        while (!assignDestination.matches("[1234]")) {
-            System.out.println("Please choose a valid option: ");
-            Arrays.asList("1. ATL", "2. JFK", "3. LAX", "4. ORD").forEach(System.out::println);
-            assignDestination = in.next();
-        }
-
-        switch (Integer.parseInt(assignDestination)) {
-            case 1:
-                destination = "ATL";
-                break;
-            case 2:
-                destination = "JFK";
-                break;
-            case 3:
-                destination = "LAX";
-                break;
-            case 4:
-                destination = "ORD";
-                break;
-        }
-        return destination;
-    }
 
     public static String dateValidation(Scanner in) {
         String tempDate = in.next();

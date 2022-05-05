@@ -35,13 +35,13 @@ public class Input {
         }
 
         System.out.println("Please enter your current location: ");
-        String origin = InputValidation.checkDestination(in);
+        String origin = InputValidation.checkDestination(in, "");
 
         // creating a Date object that stores the current time of creation
         Date date = new Date();
 
         System.out.println("Enter choose your destination: ");
-        String destination = InputValidation.checkDestination(origin, in);
+        String destination = InputValidation.checkDestination(in, origin);
 
         // creating a new Date object that takes the String in the
         // format Month/Day/Year and then splits it and creates the date object

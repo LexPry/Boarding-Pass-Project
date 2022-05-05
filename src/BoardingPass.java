@@ -1,14 +1,13 @@
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Objects;
 
 public class BoardingPass {
 
 
     public BoardingPass(User user) {
-        BoardingPass.setAirports();
+        Airport.setAirports();
         this.user = user;
         generatePrice(user);
         boardingNumber = getBoardingPassNumber();
@@ -53,29 +52,10 @@ public class BoardingPass {
     protected static final double kidDiscountPercent = .5;
 
 
-    private static final HashMap<String,Airport> airports = new HashMap<>();
-    protected static void setAirports(){
-        if (airports.size() == 0){
-            airports.put("JFK", Airport.JFK);
-            airports.put("ORD", Airport.ORD);
-            airports.put("LAX", Airport.LAX);
-            airports.put("ATL", Airport.ATL);
-        }
-    }
-
-    protected static HashMap<String,Airport> getAirports(){
-        if (airports.size() == 0){
-            airports.put("JFK", Airport.JFK);
-            airports.put("ORD", Airport.ORD);
-            airports.put("LAX", Airport.LAX);
-            airports.put("ATL", Airport.ATL);
-        }
-        return airports;
-    }
     private void generatePrice(User user) {
         double result = getBasePrice(user.getOrigin(), user.getDestination());
 
-        if (Objects.equals(user.getGender(), "f")) {
+        if (Objects.equals(user.getGender(), User.Gender.F)) {
             result *= femaleDiscountPercent;
             femaleDiscount = true;
         } else {
@@ -96,7 +76,7 @@ public class BoardingPass {
     }
 
     private double getBasePrice(String origin, String dest) {
-        var airport = airports.get(origin);
+        var airport = Airport.getAirports().get(origin);
         baseTicketPrice = airport.basePrices.get(dest);
         var etaLong = (airport.estFlightTimes.get(dest) * 1000* 60)+ user.getDepartureTime().getTime();
         ETA.setTime(etaLong);

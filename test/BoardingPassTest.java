@@ -28,15 +28,15 @@ class BoardingPassTest {
         BoardingPass female = assertDoesNotThrow(()->  new BoardingPass(testUserSeniorFemale));
         BoardingPass kid = assertDoesNotThrow(()->  new BoardingPass(testUserKidMale));
 
-        assertEquals( (int) BoardingPass.getAirports().get("JFK").basePrices.get("LAX"), male.getFinalTicketPrice());
+        assertEquals( (int) Airport.getAirports().get("JFK").basePrices.get("LAX"), male.getFinalTicketPrice());
         assertEquals( (int)(BoardingPass.getFemaleDiscountPercent()* BoardingPass.getSeniorDiscountPercent()
-                * BoardingPass.getAirports().get("JFK").basePrices.get("ORD")), female.getFinalTicketPrice());
+                * Airport.getAirports().get("JFK").basePrices.get("ORD")), female.getFinalTicketPrice());
         assertEquals( (int)(BoardingPass.getKidDiscountPercent()
-                * BoardingPass.getAirports().get("JFK").basePrices.get("ORD")), kid.getFinalTicketPrice());
+                * Airport.getAirports().get("JFK").basePrices.get("ORD")), kid.getFinalTicketPrice());
 
         assertEquals( 20, male.getBoardingNumber().length());
         var e =kid.getETA().getTime() - date.getTime();
-        var f = BoardingPass.getAirports().get("JFK").estFlightTimes.get("ORD") * 60 * 1000; //convert minutes to milliseconds
+        var f = Airport.getAirports().get("JFK").estFlightTimes.get("ORD") * 60 * 1000; //convert minutes to milliseconds
         assertEquals(f, e);
 
         assertFalse(kid.isFemaleDiscount());
