@@ -69,7 +69,7 @@ public class Input {
             try {
                 age = in.nextInt();
             } catch (InputMismatchException ime){
-                String flush = in.next();
+                in.next();
             }
         } while (age < 0);
         return age;
