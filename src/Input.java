@@ -46,10 +46,12 @@ public class Input {
         String line = InputValidation.dateValidation(in);
 
         String[] dateFormatter = line.split("/");
-        Calendar calendar = new GregorianCalendar(Integer.parseInt(dateFormatter[2]), // 12/21/2019 -> Dec/ 21st/ 2019 19:00:
-                Integer.parseInt(dateFormatter[1]),
-                Integer.parseInt(dateFormatter[0]));
-        Date departureTime = new Date(String.valueOf(calendar.getTime()));
+
+        Calendar calendar = new Calendar.Builder().setCalendarType("gregorian")
+                .setDate(Integer.parseInt(dateFormatter[2]), Integer.parseInt(dateFormatter[1]),
+                        Integer.parseInt(dateFormatter[0])).build();
+
+        Date departureTime = calendar.getTime();
 
 
 
