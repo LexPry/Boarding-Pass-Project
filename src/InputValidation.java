@@ -67,10 +67,10 @@ public class InputValidation {
     }
 
     public static String checkName(Scanner in) {
-        String tempName = in.next();
+        String tempName = in.nextLine();
         while (!tempName.matches("[a-zA-Z]+")) {
             System.out.println("Please enter a valid name: ");
-            tempName = in.next();
+            tempName = in.nextLine();
         }
         return tempName;
     }
