@@ -58,6 +58,7 @@ public class InputValidation {
 
     public static String checkEmail(Scanner in) {
         String temp = in.next();
+        // checks to make sure email at lest has an '@' and a '.'
         while (temp.matches("(@)(.+)$")) {
             System.out.println("Please enter a valid email: ");
             System.out.println("Format expected: gernericemail@xxxx.com");
@@ -68,8 +69,9 @@ public class InputValidation {
 
     public static String checkName(Scanner in) {
         String tempName = in.nextLine();
+        // only takes in characters and spaces
         while (!tempName.matches("[a-zA-Z\\s]+")) {
-            System.out.println("Please enter a valid name: ");
+            System.out.println("Please enter a valid name (only characters and spaces): ");
             tempName = in.nextLine();
         }
         return tempName;
