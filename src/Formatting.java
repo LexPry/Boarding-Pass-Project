@@ -16,7 +16,7 @@ public class Formatting {
             FileWriter formattedWrite = new FileWriter(formated);
             while (sc.hasNext()) {
                 //split userdata into 11 elements
-                String topSpace = String.format("%96s","").replace(' ','=');
+                String topSpace = String.format("%98s","").replace(' ','=');
                 String[] userData = sc.nextLine().split(",");
                 String passNumber = userData[0];
                 String name = userData[1];
@@ -27,17 +27,17 @@ public class Formatting {
                 String date = userData[6].substring(0,10);
                 String origin = userData[7];
                 String destination = userData[8];
-                String departureTime = userData[9].substring(10,18);
-                String eta = userData[10];
+                String departureTime = userData[9].substring(10, 16);
+                String eta = userData[10].substring(0,16);
                 String totalPrice = userData[11];
-                String bottomSpace = String.format("%96s","").replace(' ','=');
+                String bottomSpace = String.format("%98s","").replace(' ','=');
 
                 //formatted to look like a ticket,every 6 lines is a new ticket
                 formattedWrite.write(String.format("%s%n" +
-                                "|Name:  %-29s Age: %-33s Gender: %-10s|%n" +
-                                "|Email: %-29s Phone Number: %-24s Time: %-12s|%n" +
-                                "|From:  %-29s To:  %-33s Date: %-12s|%n" +
-                                "|Bording Pass #: %-11s ETA: %-33s Price: %-11s|%n" +
+                                "|Name:  %-31s Age: %-33s Gender: %-10s|%n" +
+                                "|Email: %-31s Phone Number: %-24s Time: %-12s|%n" +
+                                "|From:  %-31s To:  %-33s Date: %-12s|%n" +
+                                "|Boarding Pass #: %-21s ETA: %-33s Price: $%-10s|%n" +
                                 "%s%n",
                         topSpace,name, age, gender,
                         email, phoneNumber,departureTime,

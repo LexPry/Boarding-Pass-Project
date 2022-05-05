@@ -6,5 +6,6 @@ public class Main {
         BoardingPass boardingPass = new BoardingPass(user);
         System.out.println(user);
         WriteToFile.saveRecord(boardingPass,user);
+        Formatting.format();
     }
 }
