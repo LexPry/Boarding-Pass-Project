@@ -58,7 +58,7 @@ public class InputValidation {
     public static String checkEmail(Scanner in) {
         String temp = in.next();
         // checks to make sure email at lest has an '@' and a '.'
-        while (temp.matches("(@)(.+)$")) {
+        while (!temp.matches("[a-zA-Z\\d]+@[a-zA-Z\\d]+\\.[a-zA-Z\\d]+$")) {
             System.out.println("Please enter a valid email: ");
             System.out.println("Format expected: gernericemail@xxxx.com");
             temp = in.next();
