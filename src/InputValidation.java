@@ -1,8 +1,7 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
 
 public class InputValidation {
     public static boolean checkNumber(String phoneNumber) {
@@ -120,11 +119,11 @@ public class InputValidation {
 
         do {
             System.out.println("Please enter a time with the expected format: ");
-            System.out.println("Example: HH:MM AM/PM ->  12:34 PM");
-            tempTime = in.next();
+            System.out.println("Example: HH:MM AM/PM ->  02:34 PM");
+            tempTime = in.nextLine();
         }
-        while (!tempTime.matches("^(11|12|0[1-9]):([0-5][/d]) ([aApP])(mM)$"));
-        var temp = tempTime.split("(: )");
+        while (!tempTime.matches("(11|12|0[1-9]|[1-9]):([0-5]\\d)\\s([aApP])([mM])"));
+        var temp = tempTime.split("[:\\s)]");
         int hour = Integer.parseInt(temp[0]);
         if (Character.toUpperCase(temp[2].charAt(0)) == 'P'){
              hour += hour;
