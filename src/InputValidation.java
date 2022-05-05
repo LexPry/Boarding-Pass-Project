@@ -39,6 +39,7 @@ public class InputValidation {
         User.Gender gender;
         // only take in one number, no whitespace, no chars
         while (!temp.matches("(?<!\\S)[123](?!\\S)")) {
+            System.out.println("Please choose a gender:  \n1. Male \n2. Female \n3. Prefer not to say");
             temp = in.next();
         }
 
