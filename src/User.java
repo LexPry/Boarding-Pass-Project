@@ -2,8 +2,7 @@ import java.io.IOException;
 import java.util.Date;
 
 public class User {
-    public enum Gender {M, F}
-
+    public enum Gender {M, F, X}
     private String name;
     private String email;
     private Gender gender;
