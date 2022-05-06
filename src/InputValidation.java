@@ -44,12 +44,12 @@ public class InputValidation {
 
     public static User.Gender checkGender(Scanner in) {
         System.out.println("1. Male \n2. Female \n3. Prefer not to say");
-        String temp = in.next();
+        String temp = in.nextLine();
         User.Gender gender;
         // only take in one number, no whitespace, no chars
         while (!temp.matches("(?<!\\S)[123](?!\\S)")) {
             System.out.println("Please choose a gender:  \n1. Male \n2. Female \n3. Prefer not to say");
-            temp = in.next();
+            temp = in.nextLine();
         }
 
         switch (Integer.parseInt(temp)) {
@@ -66,12 +66,12 @@ public class InputValidation {
     }
 
     public static String checkEmail(Scanner in) {
-        String temp = in.next();
+        String temp = in.nextLine();
         // checks to make sure email at lest has an '@' and a '.'
         while (!temp.matches("[a-zA-Z\\d]+@[a-zA-Z\\d]+\\.[a-zA-Z\\d]+$")) {
             System.out.println("Please enter a valid email: ");
             System.out.println("Format expected: gernericemail@xxxx.com");
-            temp = in.next();
+            temp = in.nextLine();
         }
         return temp;
     }
@@ -100,7 +100,7 @@ public class InputValidation {
             for (var a : airports) {
                 System.out.println(++count + ". " + a);
             }
-            assignDestination = in.next();
+            assignDestination = in.nextLine();
 
         }while (!assignDestination.matches("[1-" + end + "]"));
 
@@ -110,7 +110,7 @@ public class InputValidation {
 
 
     public static String dateValidation(Scanner in) {
-        String tempDate = in.next();
+        String tempDate = in.nextLine();
         // makes sure date follows format (xx/xx/xxxx)
         // and ensures months will never be out of range 1-12
         // and dates will never be higher than 31
@@ -119,7 +119,7 @@ public class InputValidation {
         {
             System.out.println("Please enter a valid date with the expected format: ");
             System.out.println("Example: Month/day/year(xxx) -> 12/24/2019");
-            tempDate = in.next();
+            tempDate = in.nextLine();
         }
         return tempDate;
     }
@@ -127,19 +127,31 @@ public class InputValidation {
     public static String timeValidate(Scanner in) {
         String tempTime;
 
-        do {
+        System.out.println("Enter your Departure Time: ");
+        System.out.println("HH:mm AM/PM");
+        tempTime = in.nextLine();
+
+        while (!timeRegexMatch(tempTime)){
             System.out.println("Please use this format: HH:mm AM/PM");
             tempTime = in.nextLine();
         }
-        while (!timeRegexMatch(tempTime));
         var temp = tempTime.split("[:\\s)]");
         int hour = Integer.parseInt(temp[0]);
-        if (Character.toUpperCase(temp[2].charAt(0)) == 'P'){
+        if (temp.length !=3) {
+            temp[1] = temp[1].replace('p','P');
+            temp[1] = temp[1].replace('a','A');
+            var temp2 = temp[1].split("[AP]");
+            var temp3 = temp[0];
+            temp = new String[3];
+            temp[0] = temp3;
+            temp[1] = temp2[0];
+            temp[2] = temp2[1];
+        }
+        if (Character.toUpperCase(temp[2].charAt(0)) == 'P') {
             if (hour != 12) {
                 hour += hour;
             }
-        }
-        else if (Character.toUpperCase(temp[2].charAt(0)) == 'A'){
+        } else if (Character.toUpperCase(temp[2].charAt(0)) == 'A') {
             if (hour == 12) {
                 hour = 0;
             }
