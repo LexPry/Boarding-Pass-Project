@@ -28,7 +28,7 @@ public class InputTest {
 
     @Test
     void testGetDateAndTime(){
-        String testInput = "12/23/2022\n2:01pm\n";
+        String testInput = "12/23/2023\n2:01pm\n";
         System.setIn(new ByteArrayInputStream(testInput.getBytes()));
 
         var departureTime = Input.getDepartureTime(new Scanner(System.in));

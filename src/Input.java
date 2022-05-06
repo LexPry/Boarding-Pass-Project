@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.*;
 
 public class Input {
@@ -44,13 +46,13 @@ public class Input {
         //ClearInputLine(in);
 
 
-        Date departureTime = getDepartureTime(in);
+        TimeDate departureTime = getDepartureTime(in);
 
-        return new User(name, email, gender, phoneNumber, date, destination, departureTime, origin, age);
+        return new User(name, email, gender, phoneNumber, date, destination, TimeDate, origin, age);
     }
 
 
-    protected static Date getDepartureTime(Scanner in) {
+    protected static TimeDate getDepartureTime(Scanner in) {
         System.out.println("Enter your Departure Date: ");
         System.out.println("Expected Format: Month/Day/Year(xxxx)");
         String line = InputValidation.dateValidation(in);
@@ -58,10 +60,17 @@ public class Input {
 
         String[] timeLine = InputValidation.timeValidate(in).split(":");
 
-        Calendar calendar = new Calendar.Builder().setCalendarType("gregorian")
+        /*Calendar calendar = new Calendar.Builder().setCalendarType("gregorian")
                 .setDate(Integer.parseInt(dateFormatter[2]), Integer.parseInt(dateFormatter[1]),
                         Integer.parseInt(dateFormatter[0])).setTimeOfDay(Integer.parseInt(timeLine[0]), Integer.parseInt(timeLine[1]), 0).build();
-        return calendar.getTime();
+       return calendar.getTime();*/
+
+        LocalDate ld = LocalDate.of(
+                Integer.parseInt(dateFormatter[2]),
+                Integer.parseInt(dateFormatter[1]),
+                Integer.parseInt(dateFormatter[0]));
+        LocalTime lt = LocalTime.of(Integer.parseInt(timeLine[0]),Integer.parseInt(timeLine[1]));
+        return new TimeDate(lt,ld);
     }
 
     private static int getUserAge(Scanner in) {
