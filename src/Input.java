@@ -48,7 +48,7 @@ public class Input {
 
     private static Date getDepartureTime(Scanner in) {
         System.out.println("Enter your Departure Date: ");
-        System.out.println("Expected Format: Mon/Date/Year(xxxx)");
+        System.out.println("Expected Format: Month/Day/Year(xxxx)");
         String line = InputValidation.dateValidation(in);
         String[] dateFormatter = line.split("/");
 
