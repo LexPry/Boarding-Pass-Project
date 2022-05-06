@@ -1,6 +1,8 @@
 //Reads from a user data file, formats the data into a more user-friendly, then writes to another file.
 import java.io.File;
 import java.io.FileWriter;
+import java.text.NumberFormat;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Formatting {
@@ -30,7 +32,7 @@ public class Formatting {
                     String destination = userData[8];
                     String departureTime = userData[9].substring(10, 16);
                     String eta = userData[10].substring(0, 16);
-                    String totalPrice = userData[11];
+                    String totalPrice = NumberFormat.getCurrencyInstance(new Locale("en", "US")).format(Float.parseFloat(userData[11])/100);
                     String bottomSpace = String.format("%98s", "").replace(' ', '=');
 
                     //formatted to look like a ticket,every 6 lines is a new ticket
@@ -38,7 +40,7 @@ public class Formatting {
                                     "|Name:  %-31s Age: %-33s Gender: %-10s|%n" +
                                     "|Email: %-31s Phone Number: %-24s Time: %-12s|%n" +
                                     "|From:  %-31s To:  %-33s Date: %-12s|%n" +
-                                    "|Boarding Pass #: %-21s ETA: %-33s Price: $%-10s|%n" +
+                                    "|Boarding Pass #: %-21s ETA: %-33s Price: %-11s|%n" +
                                     "%s%n",
                             topSpace, name, age, gender,
                             email, phoneNumber, departureTime,
@@ -49,7 +51,7 @@ public class Formatting {
                                     "|Name:  %-31s Age: %-33s Gender: %-10s|%n" +
                                     "|Email: %-31s Phone Number: %-24s Time: %-12s|%n" +
                                     "|From:  %-31s To:  %-33s Date: %-12s|%n" +
-                                    "|Boarding Pass #: %-21s ETA: %-33s Price: $%-10s|%n" +
+                                    "|Boarding Pass #: %-21s ETA: %-33s Price: %-11s|%n" +
                                     "%s%n%n",
                             topSpace, name, age, gender,
                             email, phoneNumber, departureTime,
