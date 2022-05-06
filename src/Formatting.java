@@ -27,7 +27,7 @@ public class Formatting {
                     String phoneNumber = userData[3];
                     String gender = userData[4];
                     int age = Integer.parseInt(userData[5]);
-                    String date = userData[6].substring(0, 10);
+                    String date = userData[6].substring(0, 10) + " " + userData[6].substring(24, 28);
                     String origin = userData[7];
                     String destination = userData[8];
                     String departureTime = converToStandardTime(userData[9].substring(11, 16));
@@ -37,10 +37,10 @@ public class Formatting {
 
                     //formatted to look like a ticket,every 6 lines is a new ticket
                     formattedWrite.write(String.format("%s%n" +
-                                    "|Name:  %-31s Age: %-24s Gender: %-10s|%n" +
+                                    "|Name:  %-31s Age: %-24s Gender: %-19s|%n" +
                                     "|Email: %-31s Phone Number: %-15s Departure Time: %-11s|%n" +
-                                    "|From:  %-31s To:  %-24s Date: %-12s|%n" +
-                                    "|Boarding Pass #: %-21s ETA: %-24s Price: %-11s|%n" +
+                                    "|From:  %-31s To:  %-24s Date: %-21s|%n" +
+                                    "|Boarding Pass #: %-21s ETA: %-24s Price: %-20s|%n" +
                                     "%s%n",
                             topSpace, name, age, gender,
                             email, phoneNumber, departureTime,
@@ -52,7 +52,7 @@ public class Formatting {
                                     "|Email: %-31s Phone Number: %-15s Departure Time: %-11s|%n" +
                                     "|From:  %-31s To:  %-24s Date: %-21s|%n" +
                                     "|Boarding Pass #: %-21s ETA: %-24s Price: %-20s|%n" +
-                                    "%s%n%n",
+                                    "%s%n",
                             topSpace, name, age, gender,
                             email, phoneNumber, departureTime,
                             origin, destination, date,
@@ -65,9 +65,11 @@ public class Formatting {
         }
     }
     public static String converToStandardTime(String time){
-        //since user data comes in military time if the first position is larger than 2 then it is guaranteed to be in the morning
-        if(Integer.parseInt(time.substring(0,1))<=2){
+        //since user data comes in military time if the first position is larger than 2 or equal to zero then it is guaranteed to be in the morning
+        if(Integer.parseInt(time.substring(0,1))<=2 && Integer.parseInt(time.substring(0,1)) != 0){
             time = Integer.parseInt(time.substring(0,2))-12 + time.substring(2,5) + " PM";
+        }else if (Integer.parseInt(time.substring(0,1)) == 0){
+            time = time.substring(1,5) + " AM";
         }else{
             time+= " AM";
         }
