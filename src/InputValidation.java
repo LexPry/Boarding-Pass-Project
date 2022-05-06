@@ -128,8 +128,6 @@ public class InputValidation {
         String tempTime;
 
         do {
-            System.out.println("Please enter a time with the expected format: ");
-            System.out.println("Example: HH:MM AM/PM ->  02:34 PM");
             tempTime = in.nextLine();
         }
         while (!tempTime.matches("(11|12|0[1-9]|[1-9]):([0-5]\\d)\\s([aApP])([mM])"));
