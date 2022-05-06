@@ -23,11 +23,11 @@ public class Input {
         String email = InputValidation.checkEmail(in);
 
         System.out.println("Please Enter your phone number: ");
-        String phoneNumber = in.nextLine();
+        String phoneNumber = in.next();
 
         while (!InputValidation.checkNumber(phoneNumber)) {
             System.out.println("Please enter a valid phone number: ");
-            phoneNumber = in.nextLine();
+            phoneNumber = in.next();
         }
 
         System.out.println("Please enter your current location: ");
