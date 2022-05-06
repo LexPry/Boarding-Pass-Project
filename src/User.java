@@ -9,12 +9,12 @@ public class User {
     private String phoneNumber;
     private Date date;
     private String destination;
-    private TimeDate departureTime;
+    private Date departureTime;
     private String origin;
     private int age;
     private BoardingPass boardingPass;
 
-    public User(String name, String email, Gender gender, String phoneNumber, Date date, String destination, TimeDate  departureTime, String origin, int age) {
+    public User(String name, String email, Gender gender, String phoneNumber, Date date, String destination, Date  departureTime, String origin, int age) {
 
         this.name = name;
         this.email = email;

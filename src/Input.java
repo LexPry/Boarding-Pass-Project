@@ -46,13 +46,13 @@ public class Input {
         //ClearInputLine(in);
 
 
-        TimeDate departureTime = getDepartureTime(in);
+        Date departureTime = getDepartureTime(in);
 
-        return new User(name, email, gender, phoneNumber, date, destination, TimeDate, origin, age);
+        return new User(name, email, gender, phoneNumber, date, destination, departureTime, origin, age);
     }
 
 
-    protected static TimeDate getDepartureTime(Scanner in) {
+    protected static Date getDepartureTime(Scanner in) {
         System.out.println("Enter your Departure Date: ");
         System.out.println("Expected Format: Month/Day/Year(xxxx)");
         String line = InputValidation.dateValidation(in);
@@ -70,7 +70,8 @@ public class Input {
                 Integer.parseInt(dateFormatter[1]),
                 Integer.parseInt(dateFormatter[0]));
         LocalTime lt = LocalTime.of(Integer.parseInt(timeLine[0]),Integer.parseInt(timeLine[1]));
-        return new TimeDate(lt,ld);
+        Date date = new Date();
+        return date;
     }
 
     private static int getUserAge(Scanner in) {
