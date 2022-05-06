@@ -43,7 +43,7 @@ public class InputValidation {
     }
 
     public static User.Gender checkGender(Scanner in) {
-        System.out.println("Please choose a gender:  \n1. Male \n2. Female \n3. Prefer not to say");
+        System.out.println("1. Male \n2. Female \n3. Prefer not to say");
         String temp = in.next();
         User.Gender gender;
         // only take in one number, no whitespace, no chars
