@@ -14,7 +14,7 @@ class InputValidationTest {
         Assertions.assertTrue(InputValidation.checkNumber("404 320 1234"));
         Assertions.assertFalse(InputValidation.checkNumber("222"));
         Assertions.assertFalse(InputValidation.checkNumber("(4043)2071234"));
-        Assertions.assertFalse(InputValidation.checkNumber("(443)201-9234"));
+        Assertions.assertTrue(InputValidation.checkNumber("(443)201-9234"));
         Assertions.assertTrue(InputValidation.checkNumber("(777)-231-8821"));
     }
 
