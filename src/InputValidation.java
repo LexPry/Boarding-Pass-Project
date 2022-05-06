@@ -118,7 +118,7 @@ public class InputValidation {
         while (!tempDate.matches("^(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](20)\\d\\d$"))
         {
             System.out.println("Please enter a valid date with the expected format: ");
-            System.out.println("Example: Month/day/year(xxx) -> 12/24/2019");
+            System.out.println("Example: Month/Day/Year(xxxx) -> 12/24/2019");
             tempDate = in.nextLine();
         }
         return tempDate;

@@ -63,7 +63,7 @@ public class BoardingPass {
         }
 
 
-        if (user.getAge() <= 16) {
+        if (user.getAge() <= 12) {
             result *= kidDiscountPercent;
             kidDiscount = true;
             seniorDiscount = false;
