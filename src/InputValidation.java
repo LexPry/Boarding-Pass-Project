@@ -128,14 +128,26 @@ public class InputValidation {
         String tempTime;
 
         do {
+            System.out.println("Please use this format: HH:mm AM/PM");
             tempTime = in.nextLine();
         }
-        while (!tempTime.matches("(11|12|0[1-9]|[1-9]):([0-5]\\d)\\s([aApP])([mM])"));
+        while (!timeRegexMatch(tempTime));
         var temp = tempTime.split("[:\\s)]");
         int hour = Integer.parseInt(temp[0]);
         if (Character.toUpperCase(temp[2].charAt(0)) == 'P'){
-             hour += hour;
+            if (hour != 12) {
+                hour += hour;
+            }
+        }
+        else if (Character.toUpperCase(temp[2].charAt(0)) == 'A'){
+            if (hour == 12) {
+                hour = 0;
+            }
         }
         return hour + ":" + temp[1];
+    }
+
+    public static boolean timeRegexMatch(String tempTime) {
+        return tempTime.matches("(1[0-2]|0[1-9]|[1-9]):([0-5]\\d)\\s?([aApP])([mM])");
     }
 }
