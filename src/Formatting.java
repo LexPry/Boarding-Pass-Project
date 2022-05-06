@@ -32,7 +32,7 @@ public class Formatting {
                     String destination = userData[8];
                     String departureTime = userData[9].substring(10, 16);
                     String eta = userData[10].substring(0, 16);
-                    String totalPrice = NumberFormat.getCurrencyInstance(new Locale("en", "US")).format(Integer.parseInt(userData[11]));
+                    String totalPrice = NumberFormat.getCurrencyInstance(new Locale("en", "US")).format(Float.parseFloat(userData[11])/100);
                     String bottomSpace = String.format("%98s", "").replace(' ', '=');
 
                     //formatted to look like a ticket,every 6 lines is a new ticket
