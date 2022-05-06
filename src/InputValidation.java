@@ -140,16 +140,25 @@ public class InputValidation {
         if (temp.length !=3) {
             temp[1] = temp[1].replace('p','P');
             temp[1] = temp[1].replace('a','A');
+            var letter = ' ';
+            int index =   temp[1].indexOf("P");
+            if (index == -1) {
+                letter = 'A';
+            }
+            else{
+                letter = 'P';
+            }
             var temp2 = temp[1].split("[AP]");
             var temp3 = temp[0];
             temp = new String[3];
             temp[0] = temp3;
             temp[1] = temp2[0];
+            temp2[1] = letter +  temp2[1];
             temp[2] = temp2[1];
         }
         if (Character.toUpperCase(temp[2].charAt(0)) == 'P') {
             if (hour != 12) {
-                hour += hour;
+                hour += 12;
             }
         } else if (Character.toUpperCase(temp[2].charAt(0)) == 'A') {
             if (hour == 12) {

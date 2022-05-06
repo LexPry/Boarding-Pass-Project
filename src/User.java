@@ -14,7 +14,7 @@ public class User {
     private int age;
     private BoardingPass boardingPass;
 
-    public User(String name, String email, Gender gender, String phoneNumber, Date date, String destination, Date departureTime, String origin, int age) {
+    public User(String name, String email, Gender gender, String phoneNumber, Date date, String destination, Date  departureTime, String origin, int age) {
 
         this.name = name;
         this.email = email;
