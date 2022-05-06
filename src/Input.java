@@ -50,7 +50,7 @@ public class Input {
     }
 
 
-    private static Date getDepartureTime(Scanner in) {
+    protected static Date getDepartureTime(Scanner in) {
         System.out.println("Enter your Departure Date: ");
         System.out.println("Expected Format: Month/Day/Year(xxxx)");
         String line = InputValidation.dateValidation(in);

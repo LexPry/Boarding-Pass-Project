@@ -16,10 +16,10 @@ public class Formatting {
         try {
             Scanner sc = new Scanner(file);
             FileWriter formattedWrite = new FileWriter(formatted);
-            while (sc.hasNext()) {
+            while (sc.hasNextLine()) {
                 //split userdata into 11 elements
                 String[] userData = sc.nextLine().split(",");
-                if (!sc.hasNext()) {
+                if (!sc.hasNextLine()) {
                     String topSpace = String.format("%98s", "").replace(' ', '=');
                     String passNumber = userData[0];
                     String name = userData[1];
@@ -27,11 +27,11 @@ public class Formatting {
                     String phoneNumber = userData[3];
                     String gender = userData[4];
                     int age = Integer.parseInt(userData[5]);
-                    String date = userData[6].substring(0, 10);
+                    String date = userData[6];
                     String origin = userData[7];
                     String destination = userData[8];
-                    String departureTime = userData[9].substring(10, 16);
-                    String eta = userData[10].substring(0, 16);
+                    String departureTime = userData[9];
+                    String eta = userData[10];
                     String totalPrice = NumberFormat.getCurrencyInstance(new Locale("en", "US")).format(Float.parseFloat(userData[11])/100);
                     String bottomSpace = String.format("%98s", "").replace(' ', '=');
 

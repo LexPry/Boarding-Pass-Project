@@ -4,7 +4,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.util.Date;
+import java.util.Scanner;
 
 public class InputTest {
 
@@ -21,5 +24,18 @@ public class InputTest {
         assertEquals("JFK", test.getDestination());
         assertEquals("LAX", test.getOrigin());
         assertEquals(23, test.getAge());
+    }
+
+    @Test
+    void testGetDateAndTime(){
+        String testInput = "12/23/2022\n2:01pm\n";
+        System.setIn(new ByteArrayInputStream(testInput.getBytes()));
+
+        var departureTime = Input.getDepartureTime(new Scanner(System.in));
+        var result = String.format("%-33s", departureTime);
+        System.out.println(result);
+
+
+
     }
 }
