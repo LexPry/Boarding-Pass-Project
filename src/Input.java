@@ -15,7 +15,7 @@ public class Input {
 
         int age = getUserAge(in);
 
-        System.out.println("Please enter your gender: ");
+        System.out.println("Please choose your gender: ");
         // user input for gender
         User.Gender gender = InputValidation.checkGender(in);
 
