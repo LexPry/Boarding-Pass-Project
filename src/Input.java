@@ -65,12 +65,17 @@ public class Input {
                         Integer.parseInt(dateFormatter[0])).setTimeOfDay(Integer.parseInt(timeLine[0]), Integer.parseInt(timeLine[1]), 0).build();
        return calendar.getTime();*/
 
-        LocalDate ld = LocalDate.of(
+/*        LocalDate ld = LocalDate.of(
                 Integer.parseInt(dateFormatter[2]),
                 Integer.parseInt(dateFormatter[1]),
-                Integer.parseInt(dateFormatter[0]));
-        LocalTime lt = LocalTime.of(Integer.parseInt(timeLine[0]),Integer.parseInt(timeLine[1]));
+                Integer.parseInt(dateFormatter[0]));*/
+        //LocalTime lt = LocalTime.of(Integer.parseInt(timeLine[0]),Integer.parseInt(timeLine[1]));
         Date date = new Date();
+        date.setYear(Integer.parseInt(dateFormatter[2])-1900);
+        date.setMonth(Integer.parseInt(dateFormatter[0])-1);
+        date.setDate(Integer.parseInt(dateFormatter[1]));
+        date.setHours(Integer.parseInt(timeLine[0]));
+        date.setMinutes(Integer.parseInt(timeLine[1]));
         return date;
     }
 
