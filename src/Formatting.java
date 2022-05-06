@@ -30,17 +30,17 @@ public class Formatting {
                     String date = userData[6].substring(0, 10);
                     String origin = userData[7];
                     String destination = userData[8];
-                    String departureTime = userData[9].substring(10, 16);
-                    String eta = userData[10].substring(0, 16);
+                    String departureTime = converToStandardTime(userData[9].substring(11, 16));
+                    String eta = userData[10].substring(0, 11) + converToStandardTime(userData[10].substring(11,16));
                     String totalPrice = NumberFormat.getCurrencyInstance(new Locale("en", "US")).format(Float.parseFloat(userData[11])/100);
                     String bottomSpace = String.format("%98s", "").replace(' ', '=');
 
                     //formatted to look like a ticket,every 6 lines is a new ticket
                     formattedWrite.write(String.format("%s%n" +
-                                    "|Name:  %-31s Age: %-33s Gender: %-10s|%n" +
-                                    "|Email: %-31s Phone Number: %-24s Time: %-12s|%n" +
-                                    "|From:  %-31s To:  %-33s Date: %-12s|%n" +
-                                    "|Boarding Pass #: %-21s ETA: %-33s Price: %-11s|%n" +
+                                    "|Name:  %-31s Age: %-24s Gender: %-10s|%n" +
+                                    "|Email: %-31s Phone Number: %-15s Departure Time: %-11s|%n" +
+                                    "|From:  %-31s To:  %-24s Date: %-12s|%n" +
+                                    "|Boarding Pass #: %-21s ETA: %-24s Price: %-11s|%n" +
                                     "%s%n",
                             topSpace, name, age, gender,
                             email, phoneNumber, departureTime,
@@ -48,10 +48,10 @@ public class Formatting {
                             passNumber, eta, totalPrice, bottomSpace));
                     //print to console
                     System.out.printf("%s%n" +
-                                    "|Name:  %-31s Age: %-33s Gender: %-10s|%n" +
-                                    "|Email: %-31s Phone Number: %-24s Time: %-12s|%n" +
-                                    "|From:  %-31s To:  %-33s Date: %-12s|%n" +
-                                    "|Boarding Pass #: %-21s ETA: %-33s Price: %-11s|%n" +
+                                    "|Name:  %-31s Age: %-24s Gender: %-19s|%n" +
+                                    "|Email: %-31s Phone Number: %-15s Departure Time: %-11s|%n" +
+                                    "|From:  %-31s To:  %-24s Date: %-21s|%n" +
+                                    "|Boarding Pass #: %-21s ETA: %-24s Price: %-20s|%n" +
                                     "%s%n%n",
                             topSpace, name, age, gender,
                             email, phoneNumber, departureTime,
@@ -63,5 +63,14 @@ public class Formatting {
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+    public static String converToStandardTime(String time){
+        //since user data comes in military time if the first position is larger than 2 then it is guaranteed to be in the morning
+        if(Integer.parseInt(time.substring(0,1))<=2){
+            time = Integer.parseInt(time.substring(0,2))-12 + time.substring(2,5) + " PM";
+        }else{
+            time+= " AM";
+        }
+        return time;
     }
 }
