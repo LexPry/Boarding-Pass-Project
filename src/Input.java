@@ -54,6 +54,8 @@ public class Input {
 
         System.out.println("Enter your Departure Time: ");
         System.out.println("HH:mm AM/PM");
+        System.out.println("Please enter a time with the expected format: ");
+        System.out.println("Example: HH:MM AM/PM ->  02:34 PM");
         String[] timeLine = InputValidation.timeValidate(in).split(":");
 
         Calendar calendar = new Calendar.Builder().setCalendarType("gregorian")
