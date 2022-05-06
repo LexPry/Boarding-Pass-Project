@@ -66,7 +66,7 @@ public class Formatting {
     }
     public static String converToStandardTime(String time){
         //since user data comes in military time if the first position is larger than 2 or equal to zero then it is guaranteed to be in the morning
-        if(Integer.parseInt(time.substring(0,1))<=2 && Integer.parseInt(time.substring(0,1)) != 0){
+        if(Integer.parseInt(time.substring(0,1)) == 2 || Integer.parseInt(time.substring(1,2)) > 2){
             time = Integer.parseInt(time.substring(0,2))-12 + time.substring(2,5) + " PM";
         }else if (Integer.parseInt(time.substring(0,1)) == 0){
             time = time.substring(1,5) + " AM";
